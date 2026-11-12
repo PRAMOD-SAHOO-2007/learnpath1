@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">  
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LearnPath – E‑Learning Path</title>
+<link rel="stylesheet" href="style.css">
+  <script src="interactive.js" defer></script>
+</head>
+<body>
+<header>
+  <div class="logo">🎓 LearnPath</div>
+  <div class="links" id="links" onclick="document.querySelector('header').classList.remove('menu')"><a href="#home" data-s="home" onclick="go(event,'home')">Home</a><a href="#roadmap" data-s="roadmap" onclick="go(event,'roadmap')">Roadmap</a><a href="#courses" data-s="courses" onclick="go(event,'courses')">Courses</a><a href="#mine" onclick="go(event,'mine')">My progress</a><a href="#why" data-s="why" onclick="go(event,'why')">Why us</a><a href="#faq" data-s="faq" onclick="go(event,'faq')">FAQ</a><a href="#" onclick="toggleTheme(event)">🌓 Theme</a></div>
+  <nav id="nav"></nav>
+  <button class="burger" aria-label="Menu" onclick="document.querySelector('header').classList.toggle('menu')">☰</button>
+</header>
+
+<section class="hero" id="home">
+  <span class="pill">🏆 Learn · Practice · Get your Dream Job .</span>
+  <h1>Your path from coding basics to <span class="grad" id="typed">system design</span></h1>
+  <p>Pick a course, view the roadmap, and enroll in under a minute with email OTP verification.</p>
+  <button class="btn" onclick="document.getElementById('courses').scrollIntoView()">Explore courses</button> <button class="btn ghost" onclick="document.getElementById('roadmap').scrollIntoView({behavior:'smooth'})">Find my path</button>
+  <div class="stats" id="stats"></div>
+</section>
+
+<main>
+  <h2 id="roadmap">Recommended learning path <span class="small">(tap a step)</span></h2>
+  <div class="tools" id="goals"><span class="small">Your goal:</span><button class="chip on" data-g="all" onclick="setGoal('all')">🧭 Full path</button><button class="chip" data-g="job" onclick="setGoal('job')">🎯 Placements</button><button class="chip" data-g="web" onclick="setGoal('web')">🌐 Web developer</button><button class="chip" data-g="cloud" onclick="setGoal('cloud')">☁️ Cloud &amp; DevOps</button><button class="chip" data-g="ai" onclick="setGoal('ai')">🤖 AI / ML</button></div>
+  <div class="path" id="path"></div>
+
+  <div id="mine"></div>
+
+  <h2 id="courses">All courses</h2>
+  <div class="tools"><input id="q" type="search" placeholder="Search courses…" oninput="renderGrid()"><button class="chip on" data-l="All" onclick="setLvl('All')">All</button><button class="chip" data-l="Beginner" onclick="setLvl('Beginner')">Beginner</button><button class="chip" data-l="Intermediate" onclick="setLvl('Intermediate')">Intermediate</button><button class="chip" data-l="Advanced" onclick="setLvl('Advanced')">Advanced</button></div>
+  <div class="grid" id="grid"></div>
+
+  <h2 id="why">Why LearnPath?</h2>
+  <div class="grid">
+    <div class="card" style="cursor:default"><div class="ic">🗺️</div><h3>Guided roadmap</h3><p>A clear order from basics to system design so you never wonder what to learn next.</p></div>
+    <div class="card" style="cursor:default"><div class="ic">🔐</div><h3>Verified enrollment</h3><p>Email OTP validation keeps every account and enrollment genuine.</p></div>
+    <div class="card" style="cursor:default"><div class="ic">📈</div><h3>Track performance</h3><p>Tick off lessons and watch your progress dashboard update instantly.</p></div>
+    <div class="card" style="cursor:default"><div class="ic">📱</div><h3>Any device</h3><p>Fast, lightweight and fully responsive on mobile, tablet and desktop.</p></div>
+  </div>
+
+  <h2 id="faq">FAQ</h2>
+  <details><summary>Is enrollment free?</summary><p>Yes. Verify your email with an OTP and you are enrolled instantly.</p></details>
+  <details><summary>Where should a beginner start?</summary><p>Follow the roadmap: Python or C first, then C++/Java, then Data Structures.</p></details>
+  <details><summary>How is my progress saved?</summary><p>Lesson progress is saved in your browser and linked to your email account.</p></details>
+</main>
+<footer>© LearnPath · ALL RIGHT RESERVED. <br> Contact us : 9337186722 <br> Email : supportlearnpath@gmail.com </footer>
+
+
+<div class="overlay" id="ov"><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
+<button id="top" aria-label="Back to top" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div id="toast"></div>
